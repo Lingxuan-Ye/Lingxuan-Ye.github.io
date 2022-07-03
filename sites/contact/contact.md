@@ -10,11 +10,11 @@
 
 ### WeChat
 
-[Lingxuan_Ye](contact.assets/00.JPG)
+[Lingxuan_Ye](contact.assets/00.jpg)
 
 ### QQ
 
-[1026902151](contact.assets/01.JPG)
+[1026902151](contact.assets/01.jpg)
 
 <br>
 
