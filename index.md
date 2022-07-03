@@ -1,37 +1,37 @@
-## Welcome to GitHub Pages
+## 欢迎
 
-You can use the [editor on GitHub](https://github.com/Lingxuan-Ye/Lingxuan-Ye.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
+倒过太多垃圾，宣泄过太多负面情绪，对不起。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+- 如果你想**保持好心情**，或者觉得小叶确实脑袋有问题，请关闭页面。
+- 如果你对负能量爆棚的小叶感兴趣，或者单纯想看看小叶的**丑态**和**笑话**，请继续浏览。
+- 如果你浏览过后觉得小叶**脑缠**，请私信骂小叶一句脑缠。
 
-### Markdown
+总之，谢谢你，陌生人，还有大家。
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### 小作文们
 
-```markdown
-Syntax highlighted code block
+- [这十年](sites/小作文们/这十年.md)
+- [碎碎念](sites/小作文们/碎碎念.md)
+- [未发完的疯](sites/小作文们/未发完的疯.md)
+- [历史文件](sites/小作文们/历史文件.md)
 
-# Header 1
-## Header 2
-### Header 3
+### 相册
 
-- Bulleted
-- List
+- [猫](/404.md)
+- [其它](/404.md)
 
-1. Numbered
-2. List
+### 没想好的部分
 
-**Bold** and _Italic_ and `Code` text
+没想好的部分，就是还没有想出来要干什么的部分。
 
-[Link](url) and ![Image](src)
-```
+如果你闲来无事，去小叶的仓库看看那些闹着玩的无聊代码吧。
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+------
 
-### Jekyll Themes
+## 写在后面的话
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Lingxuan-Ye/Lingxuan-Ye.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+谢谢你，陌生人。
 
-### Support or Contact
+------
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+[contact](sites/contact/contact.md)
