@@ -2,9 +2,9 @@
 
 ### E-mail
 
-lingxuan.ye@icloud.com
+<lingxuan.ye@icloud.com>
 
-don.cateone@gmail.com
+<don.cateone@gmail.com>
 
 ### Twitter
 
@@ -12,7 +12,7 @@ don.cateone@gmail.com
 
 ### WeChat
 
-![Lingxuan_Ye](contact.assets/00.JPG)
+<img src="contact.assets/00.JPG" alt="Lingxuan_Ye" style="zoom:20%;" align="left"/>
 
 <br>
 
