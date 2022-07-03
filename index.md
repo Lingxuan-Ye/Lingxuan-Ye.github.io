@@ -32,6 +32,8 @@
 
 谢谢你，陌生人。
 
-------
+<br>
+
+<br>
 
 [[contact]](sites/contact/contact.md)
