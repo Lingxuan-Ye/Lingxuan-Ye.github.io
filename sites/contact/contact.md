@@ -4,15 +4,17 @@
 
 <lingxuan.ye@icloud.com>
 
-<don.cateone@gmail.com>
-
 ### Twitter
 
 [@Lingxuan_Ye](https://twitter.com/Lingxuan_Ye)
 
 ### WeChat
 
-<img src="contact.assets/00.JPG" alt="Lingxuan_Ye" style="zoom:20%;" align="left"/>
+[Lingxuan_Ye](contact.assets/00.JPG)
+
+### QQ
+
+[1026902151](contact.assets/01.JPG)
 
 <br>
 
