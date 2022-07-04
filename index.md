@@ -10,15 +10,16 @@
 
 ### 小作文们
 
-- [这十年](sites/小作文们/这十年.md)
-- [碎碎念](sites/小作文们/碎碎念.md)
-- [未发完的疯](sites/小作文们/未发完的疯.md)
-- [历史文件](sites/小作文们/历史文件.md)
+- [这十年](sites/proses/这十年.md)
+- [多余的话](sites/proses/多余的话.md)
+- [未发完的疯](sites/proses/未发完的疯.md)
+- [读后感与观后感](sites/proses/读后感与观后感.md)
+- [历史文件](sites/proses/历史文件.md)
 
 ### 相册
 
-- [猫](/404.md)
-- [其它](/404.md)
+- [猫](404.md)
+- [其它](404.md)
 
 ### 没想好的部分
 
@@ -34,4 +35,4 @@
 
 <br>
 
-[[contact]](sites/contact/contact.md)
+[[contact]](resources/contact/contact.md)
