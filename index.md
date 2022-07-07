@@ -44,4 +44,4 @@
 
 <br>
 
-[[contact]](resources/contact/contact.md)
+[[ contact ]](resources/contact/contact.md)
