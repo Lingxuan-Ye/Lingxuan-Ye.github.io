@@ -10,10 +10,4 @@
 
 小叶的个人主页由 [GitHub Pages](https://pages.github.com/) 负责搭设，并由静态站点生成器 [Jekyll](https://jekyllrb.com/) 提供支持，特此对开发人员及社区表示感谢。
 
-------
-
-<br>
-
-<br>
-
 部分图片来源于网络，如有侵权，请联系删除。
