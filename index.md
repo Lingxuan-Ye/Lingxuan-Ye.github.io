@@ -12,25 +12,25 @@
 
 2022年7月13日更新：
 
-- [胡言乱语 - 2022年7月12日](resources/proses/多余的话/胡言乱语/胡言乱语_2022年7月12日.md)
+- [胡言乱语 - 2022年7月12日](resource/prose/多余的话/胡言乱语/胡言乱语_2022年7月12日.md)
 
 ### 小作文们
 
-- [这十年](sites/proses/这十年.md)
+- [这十年](resource/prose/这十年/navigation.md)
 
-- [多余的话](sites/proses/多余的话.md)
+- [多余的话](resource/prose/多余的话/navigation.md)
 
-- [未发完的疯](sites/proses/未发完的疯.md)
+- [未发完的疯](resource/prose/未发完的疯/navigation.md)
 
-- [读后感与观后感](sites/proses/读后感与观后感.md)
+- [读后感与观后感](resource/prose/读后感与观后感/navigation.md)
 
-- [历史文件](sites/proses/历史文件.md)
+- [历史文件](resource/prose/历史文件/navigation.md)
 
 ### 相册
 
-- [猫](404.md)
+- [猫](resource/album/navigation.md)
 
-- [其它](404.md)
+- [遥远过去的一些对白](resource/album/navigation.md)
 
 ### 没想好的部分
 
@@ -40,7 +40,7 @@
 
 - [小叶的仓库](https://github.com/Lingxuan-Ye?tab=repositories)
 
-- [一些用于弹幕屏蔽的正则表达式](resources/undecided/一些用于弹幕屏蔽的正则表达式.md)
+- [一些用于弹幕屏蔽的正则表达式](resource/misc/一些用于弹幕屏蔽的正则表达式.md)
 
 ### 写在后面的话
 
@@ -52,4 +52,4 @@
 
 <br>
 
-[[ contact ]](resources/contact/contact.md)
+[[ contact ]](resource/contact/contact.md)
