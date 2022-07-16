@@ -4,11 +4,11 @@
 
 # Site
 title: 'Little Proses of Little Ye'
-subtitle: 'Come and fathom how retarded Little Ye could ever be.'
-description: ''
+subtitle: ''
+description: 'Come and fathom how retarded Little Ye could ever be.'
 keywords:
 author: Lingxuan Ye
-language: zh-CN
+language: en
 timezone: ''
 
 # URL
@@ -111,8 +111,7 @@ theme_config:
     projects: https://github.com/Lingxuan-Ye
   social_links:
     github: http://github.com/Lingxuan-Ye
-    twitter: Lingxuan_Ye
-    mail: lingxuan.ye@icloud.com
+    twitter: https://twitter.com/Lingxuan_Ye
   google_analytics:
     enabled: true
     id: UA-233489579-1
