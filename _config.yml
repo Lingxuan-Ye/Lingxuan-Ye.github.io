@@ -3,23 +3,22 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 'Little Proses of Little Ye'
+title: Hexo
 subtitle: ''
-description: 'Come and fathom how retarded Little Ye could ever be.'
+description: ''
 keywords:
-author: Lingxuan Ye
+author: John Doe
 language: en
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: 'https://Lingxuan-Ye.github.io/project'
-root: /
+url: http://example.com
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
-  trailing_index: false # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: false # Set to false to remove trailing '.html' from permalinks
+  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
 
 # Directory
 source_dir: source
@@ -41,10 +40,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: true
-marked:
-  prependRoot: true
-  postAsset: true
+post_asset_folder: false
 relative_link: false
 future: true
 highlight:
@@ -101,32 +97,9 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: cactus
-theme_config:
-  colorscheme: white
-  projects_url: https://github.com/Lingxuan-Ye
-  nav:
-    home: /
-    about: /about/
-    articles: /archives/
-    projects: https://github.com/Lingxuan-Ye
-  social_links:
-    github: http://github.com/Lingxuan-Ye
-    twitter: https://twitter.com/Lingxuan_Ye
-  google_analytics:
-    enabled: true
-    id: UA-233489579-1
-  utterances:
-    enabled: true
-    repo: "Lingxuan-Ye/Lingxuan-Ye.github.io"
-    issue_term: pathname
-    label: Comment
-    theme: github-light
+theme: landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: git
-  repo: 'https://github.com/Lingxuan-Ye/Lingxuan-Ye.github.io'
-  # example, https://github.com/hexojs/hexojs.github.io
-  branch: gh-pages
+  type: ''
