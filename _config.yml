@@ -5,7 +5,7 @@
 # Site
 title: 'Little Proses of Little Ye'
 subtitle: ''
-description: 'Come and fathom how retarded Little Ye could ever be.'
+description: '倘若永远不开场，天下也有不散的宴席。'
 keywords:
 author: Lingxuan Ye
 language: zh-CN
@@ -41,6 +41,9 @@ external_link:
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
+marked:
+  prependRoot: true
+  postAsset: true
 relative_link: false
 future: true
 highlight:
