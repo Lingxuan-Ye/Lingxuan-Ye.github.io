@@ -1,5 +1,6 @@
 ---
 title: 404 NOT FOUND
+permalink: /404
 comments: false
 ---
 
