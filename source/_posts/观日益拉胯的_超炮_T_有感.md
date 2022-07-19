@@ -1,7 +1,9 @@
 ---
 title: 观日益拉胯的《超炮 T》有感
-tags: 读后感与观后感
-categories: 读后感与观后感
+tags:
+- 读后感与观后感
+categories:
+- 读后感与观后感
 date: 2020-05-23
 ---
 

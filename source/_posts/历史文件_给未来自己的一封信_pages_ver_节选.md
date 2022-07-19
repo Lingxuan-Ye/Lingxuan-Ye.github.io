@@ -1,7 +1,9 @@
 ---
 title: 给未来自己的一封信 - 节选
-tags: 历史文件
-categories: 历史文件
+tags:
+- 历史文件
+categories:
+- 历史文件
 date: 2013-03-10
 ---
 
