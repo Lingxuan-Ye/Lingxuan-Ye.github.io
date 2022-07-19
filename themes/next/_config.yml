@@ -256,7 +256,7 @@ symbols_count_time:
   item_text_total: false
 
 # Use icon instead of the symbol # to indicate the tag at the bottom of the post
-tag_icon: false
+tag_icon: true
 
 # Reward (Donate)
 # Front-matter variable (unsupport animation).
@@ -614,16 +614,16 @@ valine:
   enable: true
   appid: nen2oy3tTEQ38MPhyyQjsmq9-gzGzoHsz
   appkey: 84Me2I4bOIJKHgUhBMU2UmuV
-  notify: false # Mail notifier
+  notify: true # Mail notifier
   verify: true # Verification code
   placeholder: Say something... # Comment box placeholder
   avatar: mm # Gravatar style
-  guest_info: nick,mail # Custom comment header
+  guest_info: nick # Custom comment header
   pageSize: 10 # Pagination size
   language: # Language, available values: en, zh-cn
   visitor: true # Article reading statistic
   comment_count: true # If false, comment count will only be displayed in post page, not in home page
-  recordIP: false # Whether to record the commenter IP
+  recordIP: true # Whether to record the commenter IP
   serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
   #post_meta_order: 0
 
