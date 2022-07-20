@@ -1,6 +1,5 @@
 ---
 title: 关于
-type: "about"
 comments: false
 ---
 
@@ -11,5 +10,7 @@ comments: false
 倘若永远不开场，天下也有不散的宴席。
 
 {% endcenterquote %}
+
+<br>
 
 欢迎光临，这里是小叶的博客。
