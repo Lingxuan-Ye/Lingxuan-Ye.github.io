@@ -118,7 +118,7 @@ darkmode: false
 # External url should start with http:// or https://
 menu:
   home: / || home
-  code: /code/ || coffee
+  code: /code/ || rocket
   archives: /archives/ || archive
   categories: /categories/ || th
   tags: /tags/ || tags
