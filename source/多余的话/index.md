@@ -41,10 +41,6 @@ comments: false
 
 - {% post_link 作古正经_无题 '无题' %}
 
-# 碎碎念
-
-- {% post_link 碎碎念 '碎碎念' %}
-
 <br>
 
 <br>

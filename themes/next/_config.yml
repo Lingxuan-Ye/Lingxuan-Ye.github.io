@@ -118,11 +118,12 @@ darkmode: false
 # External url should start with http:// or https://
 menu:
   home: / || home
-  code: /code/ || rocket
-  archives: /archives/ || archive
+  about: /about/ || user
+  code: /archives/code/ || rocket
+  whine: /whine/ || comment
   categories: /categories/ || th
   tags: /tags/ || tags
-  about: /about/ || user
+  # archives: /archives/ || archive
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat

@@ -1,10 +1,5 @@
 ---
 title: 碎碎念
-tags:
-- 碎碎念
-categories:
-- 多余的话
-- 碎碎念
 comments: false
 ---
 
@@ -19,7 +14,7 @@ comments: false
     I believe I kept most of my “self”, at a devastating cost. He would be glad, I don’t.
 
     ------
-    
+
     Thoughts for a big WuYu self-plagiarism incident.
 
 **7 月 9 日**
