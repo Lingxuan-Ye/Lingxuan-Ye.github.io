@@ -1,5 +1,5 @@
 ---
-title: 读后感与观后感
+title: 观后感
 comments: false
 ---
 
