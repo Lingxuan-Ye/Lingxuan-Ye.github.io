@@ -5,6 +5,12 @@ comments: false
 
 # 2022 年
 
+**7 月 23 日**
+
+- 我想起了那个给多年患病在床的人分享世界每个角落的美好的故事。
+
+    不观不闻不问不语，做最无知的人。
+
 **7 月 17 日**
 
 - The interrogation of what “self” is, the fear of change in “self” consciousness, and the hostility to infinite “selves” arranged on the timeline, they are indeed the significant parts of my melancholy, in 2014.
