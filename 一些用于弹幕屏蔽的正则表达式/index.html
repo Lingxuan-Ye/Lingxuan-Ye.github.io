@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Sans:300,300italic,400,400italic,700,700italic|DejaVU Sans Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="我不想讨论多久远的梗才是烂梗，我讨厌重复的弹幕。 如果你喜欢某类弹幕，请不要添加相应的正则表达式。  说明B 站对正则表达式有一定的限制，以下进行一些说明。 格式B 站特色正则表达式需在首尾分别添加正斜线 &#x2F; ，对于表达式： 1pattern  请自行修改为： 1&#x2F;pattern&#x2F;  合并正则表达式的数量达到上限时，可将多条短表达式合并，例如： 12345abc  可以合并为： 1a|b|c  拆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些用于弹幕屏蔽的正则表达式">
+<meta property="og:url" content="http://example.com/%E4%B8%80%E4%BA%9B%E7%94%A8%E4%BA%8E%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Little Proses of Little Ye">
+<meta property="og:description" content="我不想讨论多久远的梗才是烂梗，我讨厌重复的弹幕。 如果你喜欢某类弹幕，请不要添加相应的正则表达式。  说明B 站对正则表达式有一定的限制，以下进行一些说明。 格式B 站特色正则表达式需在首尾分别添加正斜线 &#x2F; ，对于表达式： 1pattern  请自行修改为： 1&#x2F;pattern&#x2F;  合并正则表达式的数量达到上限时，可将多条短表达式合并，例如： 12345abc  可以合并为： 1a|b|c  拆">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-17T04:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-26T21:57:10.799Z">
+<meta property="article:author" content="Lingxuan Ye">
+<meta property="article:tag" content="杂七杂八">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/%E4%B8%80%E4%BA%9B%E7%94%A8%E4%BA%8E%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>一些用于弹幕屏蔽的正则表达式 | Little Proses of Little Ye</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-233489579-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-233489579-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?28b9db7b574d51857cfdbd716f67c9fa";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Little Proses of Little Ye</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-whine">
+
+    <a href="/whine/" rel="section"><i class="fa fa-fw fa-comment"></i>碎碎念</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/%E4%B8%80%E4%BA%9B%E7%94%A8%E4%BA%8E%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Lingxuan Ye">
+      <meta itemprop="description" content="倘若永远不开场<br>天下也有不散的宴席">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Little Proses of Little Ye">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一些用于弹幕屏蔽的正则表达式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-17T00:00:00-04:00">2020-07-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/" itemprop="url" rel="index"><span itemprop="name">杂七杂八</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/%E4%B8%80%E4%BA%9B%E7%94%A8%E4%BA%8E%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-meta-item leancloud_visitors" data-flag-title="一些用于弹幕屏蔽的正则表达式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/%E4%B8%80%E4%BA%9B%E7%94%A8%E4%BA%8E%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/%E4%B8%80%E4%BA%9B%E7%94%A8%E4%BA%8E%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>我不想讨论多久远的梗才是烂梗，我讨厌重复的弹幕。</p>
+<p>如果你喜欢某类弹幕，请不要添加相应的正则表达式。</p>
+<hr>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>B 站对正则表达式有一定的限制，以下进行一些说明。</p>
+<h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><p>B 站特色正则表达式需在首尾分别添加正斜线 <code>/</code> ，对于表达式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pattern</span><br></pre></td></tr></table></figure>
+
+<p>请自行修改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/pattern/</span><br></pre></td></tr></table></figure>
+
+<h2 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h2><p>正则表达式的数量达到上限时，可将多条短表达式合并，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a</span><br><span class="line"></span><br><span class="line">b</span><br><span class="line"></span><br><span class="line">c</span><br></pre></td></tr></table></figure>
+
+<p>可以合并为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a|b|c</span><br></pre></td></tr></table></figure>
+
+<h2 id="拆分"><a href="#拆分" class="headerlink" title="拆分"></a>拆分</h2><p>正则表达式的字符长度达到上限时，可将其进行拆分，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(d|e)f|g</span><br></pre></td></tr></table></figure>
+
+<p>可以拆分为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df</span><br><span class="line"></span><br><span class="line">ef</span><br><span class="line"></span><br><span class="line">g</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除子表达式"><a href="#删除子表达式" class="headerlink" title="删除子表达式"></a>删除子表达式</h2><p>如果你喜欢的一类弹幕出现在子表达式里，可以将其删除。</p>
+<p>对于表达式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a|b|c</span><br></pre></td></tr></table></figure>
+
+<p>如果不想屏蔽其中的 <code>b</code> ，可以修改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a|c</span><br></pre></td></tr></table></figure>
+
+<p>请不要删除嵌套在括号里的子表达式，除非你明白你正在做什么。</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>如果你不能确定某个符号的作用，请不要对其修改。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>保持弹幕常闭：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.</span><br></pre></td></tr></table></figure>
+
+<p>避免手动关闭弹幕。</p>
+<hr>
+<p>屏蔽汉字和字母以外字符组成的弹幕（比如一长串感叹号或者纯数字）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[^a-zA-Z\u4e00-\u9fa5]+$</span><br></pre></td></tr></table></figure>
+
+<p>如果只屏蔽纯数字，可使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^\d+$</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽若干字符以内的弹幕（以三字为例）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^.&#123;1,3&#125;$</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽刷前排：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[前第]\s*(排|[\d零一二三四五六七八九十百千万亿])|[\d零一二三四五六七八九十百千万亿].*大门|[dD][iI][yY][iI]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽其他开头常见弹幕：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[在再]来[一亿]|恭喜.*宝|黄金矿工|(来|[lL][aAeE][iI]?).?(了|[lL][eE])|全体(起|.[立飞])|起[立飞]|^上一站|过来的?$|先.&#123;1,3&#125;[再后]|^提前|[更出].*追|周.*指.*活</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽 “前方高能”、“调大亮度”、“调高音量” 等：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">前[面方头].*(高|能|地狱)|高能|非战斗人员|调.*[亮大高]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽时间和日期：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(\d+\D)?\d+\D\d+|年.+月|月.+日|[\d零一二三四五六七八九十百千万亿两几半].*(世纪|纪元|辈子|年|月|时|小时|分钟|秒)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽诸如 “+1”、“+10086”：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(\+|加)[\d零一二三四五六七八九十百千万亿]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽 OP、ED 相关弹幕：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">左.*右.*(大法|得手|失)|小.*一[抖oOpP]|精.降落|^(请求)?空降[^\d]*$|[开收停施]工|以[上下].*均.*出现|指挥部|[oO][pP]|[eE][dD]</span><br></pre></td></tr></table></figure>
+
+<p><strong>不会</strong>屏蔽 “空降至xx秒”。</p>
+<hr>
+<p>屏蔽 “完结撒花”：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[完玩万].*[结节結節截美].*[撒散洒杀啥]|[撒散洒杀啥]\s*花|感.*谢.*陪.*伴|确.*认.*存.*活|存.*活.*确.*认|^(存活|活着)|[有无]人区|留名</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽其它片尾常见弹幕</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">正片|条.[片蛋]|(上|前面).*彩蛋|^(笑容|表情)|^心[脏肺]..$</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽颜色梗：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">变.*色|色.*变|什么.?色|绿|[戴带扣].*[冠帽]|[冠帽].*[戴带扣掉]|帽子|爱.?一.?光|自然.?力量|我.*白色?的?[？?]*$|^.?[紫基橘桔菊].&#123;2,3&#125;$|颜.*表.*立</span><br></pre></td></tr></table></figure>
+
+<p>我屏蔽了 “绿” 这个字。与其担心误伤，不如多担心担心 B 站用户下沉的程度。</p>
+<p>另外建议屏蔽彩色弹幕。</p>
+<hr>
+<p>屏蔽自我意识过剩以及饭圈：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(我[哒的].?|参上|一拜)[^0-9a-zA-Z\u4e00-\u9fa5]*$|我.?([男女基]朋?友|老[公婆])|我的[就,，!！\s]|我.*(表示|接受)|归我|^.&#123;0,2&#125;我|[我俺]也?一</span><br><span class="line"></span><br><span class="line">承包|休想|不许|凶|先.为敬|俺|寡人|朕|哀家|洒家|鄙人|宝宝|妈妈|老(朽|夫|子|娘|阿姨)|劳资</span><br></pre></td></tr></table></figure>
+
+<p>太长所以拆成了两条。</p>
+<hr>
+<p>屏蔽虚空对话：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[前后上下]面.*(的|你|[那这]个).*(等|够了|别|休想|拖出去|你|我|忍|在下|[跟带加]上|魔)|^(说.*|.&#123;2,&#125;)的|的.&#123;0,4&#125;够了|暴露(了|时间)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>Jo 小鬼专题</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(.&#123;2,4&#125;).*(\1.*)&#123;2,&#125;|(.)(.*)(\3\4*)&#123;2,&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该表达式可以屏蔽：</p>
+<ul>
+<li><p>重复出现了三次以上的，由两到四个字符组成的短句。即使有些小鬼自作聪明地在重复项之间添加了若干个<strong>不同</strong>的干扰项；</p>
+</li>
+<li><p>单字重复出现三次以上的弹幕，即使单字之间隔了零到多个<strong>相同</strong>干扰项。</p>
+<blockquote>
+<p>这个例句不会被屏蔽，即使这个例句出现了三个 “例” 字</p>
+</blockquote>
+</li>
+</ul>
+<p>你将不会看到三次以上的 “欧拉” 和 “木大”。</p>
+<p>杂项：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">([咋扎杂砸咂匝]|[口扣抠阔扩括]).*[哇瓦挖洼][卢颅路陆露鲁撸噜碌]|[dD][iI][oO].*家产|塑料.*世界|世界.*塑料|控制楼梯|压路机|不做人|平角裤</span><br><span class="line"></span><br><span class="line">((承|[jJ][iI]?[oO])太郎|([啊阿]|[买卖]鱼)强).*(水[产族]|海洋)|不是.*[而\s，,]是.*父亲</span><br><span class="line"></span><br><span class="line">([—-－–])+.\1+|典[明眀].*粥|[啊阿]帕.*茶|抽紫烟|神父.*碟|[jJgG][iI]?[oO]\s*(等|印|护车)|[bB][oO].*[kK][iI]|[上下]一.+(现在|已经)|面板$|星.*(远征|十字)军</span><br><span class="line"></span><br><span class="line">大乔.*[赞踩]|荒木.*(老贼|团)|你.*说.*[了对是][巴吧]|此曲一出|标准结局|[sS].&#123;0,2&#125;[hH].*[tT]|[承花龙茸]&#123;2&#125;|动物之友</span><br><span class="line"></span><br><span class="line">父.[子女]|铁.*恋人|[五5][aA]之耻|安杰[罗洛]|米[^斯]达|小飞机|灭爸|来啃燕窝|老东西|袭击妈妈|锁孔看|握.?手手</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>轻音少女：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[kK].&#123;0,2&#125;([0oO][nN]|[nN][0oO]|[0oO][fF][fF])[^0-9a-zA-Z\u4e00-\u9fa5]*$|山田尚子.*神|罗[mM][iI][oO]|朱律叶</span><br></pre></td></tr></table></figure>
+
+<p>转场刷屏很烦。</p>
+<hr>
+<p>高木同学：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">太.*永.*太|三[幻神|巨头|人来凑]|胰岛|狗粮|开[饭惨]|饱了|款待</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>中二病也要谈恋爱：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[爆暴]炸.*现充|邪王真眼.*最强|有洞</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>三体：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">人类.*罗辑|(消灭|消除|暴政).*属于|海.*[对那].*敌|黑暗森林|程心|圣母|[恒乱]纪元|刻.*石头上|岁月.*文明|文明.*岁月</span><br></pre></td></tr></table></figure>
+
+<p>黑暗森林是一个极具美感并且在小说世界观下基本自圆其说的理论，但在小鬼们的讨论下往往演变成了社会达尔文主义。“种群是进化的基本单位”，就算是对大自然的拙劣模仿，人与人之间的丛林法则也是不自然的；以前我们用 “圣母” 一词抨击不切实际、慷他人之慨的人，小鬼们鹦鹉学舌以后，它们肆无忌惮地用 “圣母” 来抨击人类善良、宽容等美好品质。《三体》系列是我很喜欢的小说，我从来没有想过它会像如今这样小鬼横行。鉴于弹幕区本来就不是一个良好的讨论环境，想来想去，还是通通屏蔽了好。</p>
+<hr>
+<p>魔法禁书目录以及超电磁炮：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(你|君|あなた).*[指手].*[躍跃飛飞舞動动光]|跃.*信.*存</span><br></pre></td></tr></table></figure>
+
+<p>似乎超炮 T 出来后 B 站自己把 “指尖电光” 屏蔽了，不确定。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(超|应该|换成).*[tT][mM]</span><br></pre></td></tr></table></figure>
+
+<p>绢旗口癖带来的脑缠弹幕。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">火包\s?女且|电脑配件|势力|最弱|^.&#123;2,4&#125;指导|教主|一方|大爷|曲面屏|呱太|祭霸|霸麻</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>从零开始的异世界生活：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">魔.+(体香|香气|脚气)|村.*好.*剑|([要卖买]|小哥.*)苹果</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>鬼灭之刃：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">无[残惨]|[碳炭].[郎朗]|[柱鬼]灭|[之の]呼吸|火之神|紫藤花|猪油骨|南南东</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>Overlord：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">骨终[成为]王|傲天|[炮跑砲咆泡]&#123;2&#125;(.壶|茶)|迪化|迪.*戒指|戒指.*迪|魅魔.*耻|乃.*奉.*至尊</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>没有黄段子的无聊世界：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[sS].?[0oO].?[xX]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>我的青春恋爱物语果然有问题：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(青春|恋爱)物语.*问题</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>终将成为你：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">百合.*[连联]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>紫罗兰永恒花园：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">花.*爱.*紫罗兰</span><br></pre></td></tr></table></figure>
+
+<p>本番弹幕类似 QQ 个性签名，建议<strong>关闭</strong>弹幕。</p>
+<hr>
+<p>哈利波特：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">霍格沃兹|哈.波.?特|格兰芬多|斯莱特林|霍奇帕奇|拉文克劳|狮院|蛇院|獾院|鸦院|.又.分之|麻瓜</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>掉头梗和腰斩梗：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">芙(兰.+|.+兰)达|(头|脑|活|完[好整]).*(学姐|巴?麻美|芙兰达)|(学姐|巴?麻美|芙兰达).*(头|脑|活|完[好整])|[换掉调]头</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽 “会上B站” 相关弹幕：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(出现|[上发传转放在到至]).*[在到至]?(([bBpPdD][iI][lL][iI]|[iI][lL][iI][bBpPdD]|[哔批][里哩])&#123;2&#125;|([bBpP批破比逼哔][iI]?|小破)[站占战])</span><br></pre></td></tr></table></figure>
+
+<p>说实话，我甚至不想在弹幕里看到 “B站”：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">([bBpPdD][iIlL]&#123;3&#125;|[iIlL]&#123;3&#125;[bBpPdD]|[哔批][里哩])&#123;2&#125;|([bBpP批破比逼哔][iI]?|小破)[站占战]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽 “你看看这是人说的话 &#x2F; 人干的事吗”：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(([你女汝][听闻看瞧]|([看听瞧说评])\3|这是).*人|^.?人).*[言话]|[做当作坐座]个人|人.*干.*事</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽 “xxx（老师），你看看 &#x2F; 学着点 &#x2F; …”：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[你宁您].*([看康瞧瞅听学])(\1|着点)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽 “不会吧不会吧” 等：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">千层(饼|套路)|第.&#123;1,2&#125;层|老.&#123;2,5&#125;了|[你细]品|(不会[吧把巴]|[阿啊][吧巴])&#123;2,&#125;|急了|就这|不香</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽友军、开炮、战忽局等：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[开放停][炮火箭]|[敌友]军|厚葬|二营长|秀[^一]|意大利[炮跑泡砲面]|[站占战][乎忽]|此子|不[可能]留|留不|同志|暴露了|明白人|安排|忽悠</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>这个我也不知道怎么总结：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[掉断上下]线|代打|挂机|回合|重连|续费|登[录陆]|([一请参作求出助挑应][站战]|参与|[介加进]入|[退逃][离出]|离开|就位|准备).&#123;0,4&#125;$|谢.+[刷送]</span><br><span class="line"></span><br><span class="line">[aA]了?[上出][去来]|危[，,\s]速[归来回]|偷(家|塔|水晶)|[敌我].*水晶|[开打]团|团(战|不过)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>校园四霸：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(校.*|四)霸|折[木棒]|奉太[狼朗郎]|绫小路|路[哥爷]|大老师|比.谷|自[曝爆]|([咲关咩]|口关)太|快来|来.&#123;0,2&#125;下</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽 “你谁啊”、“新角色” 之类弹幕：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[你您宁这那]谁|.&#123;0,4&#125;[那哪]位|^谁[啊阿]|谁[啊阿][^0-9a-zA-Z\u4e00-\u9fa5]*$|新.&#123;0,4&#125;角色</span><br></pre></td></tr></table></figure>
+
+<p>聊胜于无吧，能整的花样太多了，屏蔽不过来。</p>
+<hr>
+<p>屏蔽与烟花相关的弹幕：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^\s*(这个时候|[此这][时刻])|(烟花|花火).*[圆扁]|炮口.*看</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>屏蔽小学生诗词朗诵：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^([\u4e00-\u9fa5]&#123;4&#125;[，,\s][\u4e00-\u9fa5]&#123;4&#125;|[\u4e00-\u9fa5]&#123;5&#125;[，,\s][\u4e00-\u9fa5]&#123;5&#125;|[\u4e00-\u9fa5]&#123;7&#125;[，,\s][\u4e00-\u9fa5]&#123;7&#125;)[。.！!？?\s]*$</span><br></pre></td></tr></table></figure>
+
+<p>原理是把标点两侧出现等长汉字（仅限长度为4、5或7）的弹幕都屏蔽了，会有误伤。</p>
+<hr>
+<p>党争、后宫番相关：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">护[夫肤妻]|[正后]宫[的之の]|你[就舅]宠|(倾家荡产|买|压|收).+股|买定离手|开盘|[大中小][型行形].*现场</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>下面这些基本都能看懂在说什么，不做说明了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">[糟遭曹漕]老头.+坏|疑.*车|馋.*身[子体]|身[子体].*馋|[一亿]人[一亿]|夸父|水娃|喝[一亿]口</span><br><span class="line"></span><br><span class="line">[wW].*[dD].*[nN].*[mM].*[dD]|[aA][1iIlLeE]高闪|秋梨膏|我.+了.*什么好说|[rR][uU][sS][hH].*[bB]|[锁洗头].+没得[锁洗头]|(不要|别).*([cC][tT]|警).*[aA][kK]</span><br><span class="line"></span><br><span class="line">难民|解禁|[穷富]人|会员|相遇|嚣张|钞|金钱|[出更].追.|止步于此</span><br><span class="line"></span><br><span class="line">今.*风.*[是真]|[今风].*喧嚣</span><br><span class="line"></span><br><span class="line">[色摄][影像相]师|狙击手|炊事班|侦察兵</span><br><span class="line"></span><br><span class="line">[張张]三|三.*迟|开门见三</span><br><span class="line"></span><br><span class="line">下次.*一定|(你|示投)币|[3三][连联]</span><br><span class="line"></span><br><span class="line">(时代变|食大便).*了</span><br><span class="line"></span><br><span class="line">大[哥姐爷佬嫂妈].*抽|劲大</span><br><span class="line"></span><br><span class="line">有趣的.&#123;0,2&#125;人</span><br><span class="line"></span><br><span class="line">看不清.*眼[镜睛]|高锰酸钾|莎普爱思|眼睛里?进</span><br><span class="line"></span><br><span class="line">血赚.*不亏</span><br><span class="line"></span><br><span class="line">举[爪手]|记住[这那内]|圈起|要考|背诵|课文</span><br><span class="line"></span><br><span class="line">读.+写</span><br><span class="line"></span><br><span class="line">刻.*[dD][nN][aA]|[dD][nN][aA].*刻</span><br><span class="line"></span><br><span class="line">花[泽澤沢][^香]+菜</span><br><span class="line"></span><br><span class="line">停止.*行为</span><br><span class="line"></span><br><span class="line">(日本|世界|地球).+小|众所周知.*是</span><br><span class="line"></span><br><span class="line">[工エ].+[口ロ]</span><br><span class="line"></span><br><span class="line">^为了|活着就?是?为了</span><br><span class="line"></span><br><span class="line">[盲华][点生].+[盲华][点生]</span><br><span class="line"></span><br><span class="line">此生.*来世|幻想乡</span><br><span class="line"></span><br><span class="line">青春.*(结束|回来|开始)|爷|[青春][结回]</span><br><span class="line"></span><br><span class="line">永远.神|[yY]&#123;2&#125;[dD][sS]</span><br><span class="line"></span><br><span class="line">^.&#123;0,5&#125;(走好|保重)|[rR](.&#123;0,2&#125;)[iI1lL]\2[pP]</span><br><span class="line"></span><br><span class="line">炉石传说.+好玩|你倒是|猎.*弧.*长|(考..|达拉)幼龙|铲(车人|子嘴)|[cC菜][bB笔比逼]|金色传说|晕针</span><br></pre></td></tr></table></figure>
+
+<h1 id="写在后面的话"><a href="#写在后面的话" class="headerlink" title="写在后面的话"></a>写在后面的话</h1><p>B 站不支持零宽断言，正则表达式作用有限。建议放弃幻想，关闭弹幕，不要把时间浪费在学习正则表达式这样毫无意义的事情上面，否则最后一定会因为层出不穷的漏网之鱼而自己跟自己赌气。</p>
+<br>
+
+<br>
+
+<hr>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv6804328">[ 查看专栏 ]</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/" rel="tag"><i class="fa fa-tag"></i> 杂七杂八</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E8%A7%82%E5%90%8E%E6%84%9F_%E8%B6%85%E7%82%AE_T/" rel="prev" title="观日益拉胯的《超炮 T》有感">
+      <i class="fa fa-chevron-left"></i> 观日益拉胯的《超炮 T》有感
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E8%83%A1%E8%A8%80%E4%B9%B1%E8%AF%AD_2020-08-09/" rel="next" title="胡言乱语 - 2020 年 8 月 9 日">
+      胡言乱语 - 2020 年 8 月 9 日 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-text">说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F"><span class="nav-text">格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%88%E5%B9%B6"><span class="nav-text">合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%86%E5%88%86"><span class="nav-text">拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%AD%90%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">删除子表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E6%96%87"><span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%90%8E%E9%9D%A2%E7%9A%84%E8%AF%9D"><span class="nav-text">写在后面的话</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lingxuan Ye"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Lingxuan Ye</p>
+  <div class="site-description" itemprop="description">倘若永远不开场<br>天下也有不散的宴席</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="http://github.com/Lingxuan-Ye" title="GitHub → http:&#x2F;&#x2F;github.com&#x2F;Lingxuan-Ye" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/lingxuan_ye" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;lingxuan_ye" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/lingxuan_ye" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;lingxuan_ye" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lingxuan Ye</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">44k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">40 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : true,
+      appId      : 'nen2oy3tTEQ38MPhyyQjsmq9-gzGzoHsz',
+      appKey     : '84Me2I4bOIJKHgUhBMU2UmuV',
+      placeholder: "Say something...",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
