@@ -118,12 +118,12 @@ darkmode: false
 # External url should start with http:// or https://
 menu:
   home: / || home
-  about: /about/ || user
-  code: /archives/code/ || rocket
+  # code: /archives/code/ || rocket
   whine: /whine/ || comment
   categories: /categories/ || th
   tags: /tags/ || tags
-  # archives: /archives/ || archive
+  archives: /archives/ || archive
+  about: /about/ || user
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
@@ -142,7 +142,7 @@ menu_settings:
 sidebar:
   # Sidebar Position.
   position: left
-  #position: right
+  # position: right
 
   # Manual define the sidebar width. If commented, will be default for:
   # Muse | Mist: 320
