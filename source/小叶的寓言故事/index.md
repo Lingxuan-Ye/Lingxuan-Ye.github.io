@@ -1,9 +1,5 @@
 ---
 title: 小叶的寓言故事
-tags:
-- 未发完的疯
-categories:
-- 未发完的疯
 comments: false
 ---
 

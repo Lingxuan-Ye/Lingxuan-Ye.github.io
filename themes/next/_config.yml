@@ -119,7 +119,7 @@ darkmode: false
 menu:
   home: / || home
   # code: /archives/code/ || rocket
-  whine: /whine/ || comment
+  whine: /碎碎念/ || comment
   categories: /categories/ || th
   tags: /tags/ || tags
   archives: /archives/ || archive

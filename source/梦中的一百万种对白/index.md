@@ -1,9 +1,5 @@
 ---
 title: 梦中的一百万种对白
-tags:
-- 未发完的疯
-categories:
-- 未发完的疯
 comments: false
 ---
 
