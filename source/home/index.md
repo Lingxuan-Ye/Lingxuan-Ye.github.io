@@ -1,5 +1,6 @@
 ---
 title: 欢迎
+permalink: index.html
 comments: false
 ---
 
