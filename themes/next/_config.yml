@@ -104,7 +104,7 @@ scheme: Mist
 # scheme: Gemini
 
 # Dark Mode
-darkmode: false
+darkmode: true
 
 
 # ---------------------------------------------------------------
@@ -120,8 +120,8 @@ menu:
   home: / || home
   # code: /archives/code/ || rocket
   whine: /碎碎念/ || comment
-  categories: /categories/ || th
-  tags: /tags/ || tags
+  # categories: /categories/ || th
+  # tags: /tags/ || tags
   archives: /archives/ || archive
   about: /about/ || user
   #schedule: /schedule/ || calendar
